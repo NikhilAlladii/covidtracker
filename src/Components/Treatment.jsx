@@ -1,7 +1,7 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 // import FlagImage from "../Images/logo-flag.png";
 import { Pagination } from "react-rainbow-components";
 import moment from "moment";
@@ -15,7 +15,26 @@ function Treatment() {
     setActivePage(page);
   };
 
-  const getTreatmentData = () => {
+  // const getTreatmentData = () => {
+  //   axios
+  //     .get(
+  //       `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/news/get-health-news/${activePage}`,
+  //       {
+  //         headers: {
+  //           "X-RapidAPI-Host":
+  //             "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+  //           "X-RapidAPI-Key":
+  //             "207bb68696msh7c2ab8791bda0adp103defjsn290b1ec659d4",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log("response is", res.data.news);
+  //       setHealthNews(res.data.news);
+  //     });
+  // };
+
+  const getTreatmentData = useCallback(() => {
     axios
       .get(
         `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/news/get-health-news/${activePage}`,
@@ -31,12 +50,13 @@ function Treatment() {
       .then((res) => {
         console.log("response is", res.data.news);
         setHealthNews(res.data.news);
-      });
-  };
+      })
+      .catch((err) => console.error(err));
+  }, [activePage]);
 
   useEffect(() => {
     getTreatmentData();
-  }, [activePage]);
+  });
 
   return (
     <div style={{ position: "relative" }}>

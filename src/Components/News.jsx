@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Pagination } from "react-rainbow-components";
 import moment from "moment";
 import "./News.css";
@@ -21,7 +21,21 @@ function News() {
     setActivePageNews(page);
   };
 
-  const getTreatmentData = () => {
+  // const getTreatmentData = () => {
+  //   return axios.get(
+  //     `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/news/get-vaccine-news/${activePage}`,
+  //     {
+  //       headers: {
+  //         "X-RapidAPI-Host":
+  //           "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+  //         "X-RapidAPI-Key":
+  //           "207bb68696msh7c2ab8791bda0adp103defjsn290b1ec659d4",
+  //       },
+  //     }
+  //   );
+  // };
+
+  const getTreatmentData = useCallback(() => {
     axios
       .get(
         `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/news/get-vaccine-news/${activePage}`,
@@ -37,13 +51,14 @@ function News() {
       .then((res) => {
         console.log("response is", res.data.news);
         setHealthNews(res.data.news);
-      });
-  };
+      })
+      .catch((err) => console.error(err));
+  }, [activePage]);
 
-  const getVaccineData = () => {
+  const getVaccineData = useCallback(() => {
     axios
       .get(
-        `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/news/get-coronavirus-news/${activePageNews}`,
+        `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/news/get-vaccine-news/${activePageNews}`,
         {
           headers: {
             "X-RapidAPI-Host":
@@ -54,19 +69,18 @@ function News() {
         }
       )
       .then((res) => {
-        console.log("response is", res.data.news);
-        // setHealthNews(res.data.news);
         setCovidNews(res.data.news);
-      });
-  };
+      })
+      .catch((err) => console.error(err));
+  }, [activePageNews]);
 
   useEffect(() => {
     getTreatmentData();
-  }, [activePage]);
+  });
 
   useEffect(() => {
     getVaccineData();
-  }, [activePageNews]);
+  });
   return (
     <div>
       <Box className="d-flex align-items-center justify-content-between flex-column">

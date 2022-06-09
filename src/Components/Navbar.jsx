@@ -39,6 +39,9 @@ function Navbar() {
 
   const [toCheckLogin, setToCheckLogin] = useState("");
 
+  const [matchPassword, setMatchPassword] = useState(false);
+  const [matchLoginPassword, setMatchLoginPassword] = useState(false);
+
   console.log("name is", name);
 
   const handleSignUp = () => {
@@ -58,6 +61,8 @@ function Navbar() {
       var SignUpDataNew = localStorage.getItem("SignUpData");
 
       console.log("retrievedObject: ", JSON.parse(SignUpDataNew));
+    } else {
+      setMatchPassword(true);
     }
 
     console.log("SignUp data", SignUpData);
@@ -80,9 +85,10 @@ function Navbar() {
       if (forLogout === "SuccessfullyLoged") {
         setToCheckLogin("login");
       }
+    } else {
+      setMatchLoginPassword(true);
     }
   };
-  console.log("logined is", toCheckLogin);
 
   useEffect(() => {
     let forLogout = localStorage.getItem("CheckLogin");
@@ -200,6 +206,12 @@ function Navbar() {
             }}
           />
 
+          {matchPassword === true && (
+            <Typography variant="caption">
+              Please match the Password and Confirm Password
+            </Typography>
+          )}
+
           <Button
             variant="contained"
             color="success"
@@ -237,6 +249,12 @@ function Navbar() {
               setLoginPassword(event.target.value);
             }}
           />
+
+          {matchLoginPassword && (
+            <Typography variant="caption">
+              Please match the Credentials
+            </Typography>
+          )}
 
           <Button
             variant="contained"

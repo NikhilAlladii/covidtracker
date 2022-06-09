@@ -23,29 +23,20 @@ function Vaccine() {
   };
 
   const getWorldData = () => {
-    axios
-      .get(
-        "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/vaccines/get-all-vaccines",
-        {
-          headers: {
-            "X-RapidAPI-Host":
-              "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
-            "X-RapidAPI-Key":
-              "207bb68696msh7c2ab8791bda0adp103defjsn290b1ec659d4",
-          },
-        }
-      )
-      .then((res) => {
-        // console.log("response is", res.data);
-        setAllVaccineData(res.data);
-        getWorldDataSpecific(res.data[0]);
-      });
+    return axios.get(
+      "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/vaccines/get-all-vaccines",
+      {
+        headers: {
+          "X-RapidAPI-Host":
+            "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+          "X-RapidAPI-Key":
+            "207bb68696msh7c2ab8791bda0adp103defjsn290b1ec659d4",
+        },
+      }
+    );
   };
 
-  // console.log("rf", vaccineData);
-
   const getWorldDataSpecific = (eachVaccine) => {
-    // console.log("data and vaccine is", eachVaccine);
     axios
       .get(
         `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/vaccines/get-vaccines/${eachVaccine?.trimedCategory}/${eachVaccine?.trimedName}`,
@@ -78,7 +69,10 @@ function Vaccine() {
   };
 
   useEffect(() => {
-    getWorldData();
+    getWorldData().then((res) => {
+      setAllVaccineData(res.data);
+      getWorldDataSpecific(res.data[0]);
+    });
   }, []);
   return (
     <div>

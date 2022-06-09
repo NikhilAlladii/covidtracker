@@ -6,7 +6,7 @@ function GoToLogin() {
   return (
     <div>
       <div className="goToLogin d-flex align-items-center justify-content-center">
-        <Typography>Please Login to See The Covid Results</Typography>
+        <Typography>Please Login To See The Covid Results</Typography>
       </div>
     </div>
   );

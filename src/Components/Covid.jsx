@@ -132,12 +132,12 @@ function Covid() {
     if (country.length > 1 && countryCode.length > 1) {
       getCountryData();
     }
-  }, [country, countryCode]);
+  });
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    forTesting.map((covidDataByInput) => {
+    forTesting.map(function (covidDataByInput) {
       if (covidDataByInput.Country === searchedValue) {
         setSearchedCountry(covidDataByInput);
         setCountryWithCode([]);
@@ -146,9 +146,10 @@ function Covid() {
       } else if (covidDataByInput.Country !== searchedValue) {
         setDataFound("no");
       }
+
+      return 0;
     });
   }
-
 
   return (
     <div>
