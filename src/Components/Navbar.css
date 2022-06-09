@@ -1,0 +1,12 @@
+.navbarItems {
+  list-style-type: none;
+}
+
+.navbarContainer {
+  height: 10vh;
+  align-items: center;
+}
+
+.navbarItems li {
+  cursor: pointer;
+}

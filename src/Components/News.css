@@ -1,0 +1,15 @@
+.healthContainerNews {
+  overflow: auto;
+  height: calc(100vh - 150px);
+}
+
+.healthContainerNews::-webkit-scrollbar {
+  display: none;
+  overflow-y: hidden;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.healthContainerNews {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

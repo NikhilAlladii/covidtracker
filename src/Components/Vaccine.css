@@ -1,0 +1,73 @@
+.leftContainer {
+  border-right: 1px solid #e4e4e5;
+}
+
+.vaccinePageHeader {
+  background-color: rgb(216, 237, 255);
+}
+
+.paginationSetup {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgb(216, 237, 255);
+}
+
+.leftContainerTop {
+  overflow-y: auto;
+  height: calc(100vh - 143px);
+}
+
+.leftContainerTop ::-webkit-scrollbar {
+  display: none;
+}
+
+.leftContainerTop {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.leftContainerTop::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.leftContainerTop .categoryNameTop {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.leftContainerTop .categoryName {
+  font-size: 16px;
+}
+
+.rightSideContainer {
+  overflow: auto;
+  height: calc(100vh - 141px);
+}
+
+.rightSideContainer ::-webkit-scrollbar {
+  display: none;
+}
+
+.rightSideContainer {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.leftContainerTable {
+  border-left: 1px solid #e4e4e5;
+  border-bottom: 1px solid #e4e4e5;
+}
+
+.tableViewContainer {
+  overflow: auto;
+  height: calc(100vh - 185px);
+}
+
+.leftContainer .tableViewContainer ::-webkit-scrollbar {
+  display: none;
+}
+
+.leftContainer .tableViewContainer {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
